@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*":[
+        "src/*"
+      ]
+    },
+    "plugins": [{
+      "name": "typescript-plugin-css-modules"
+    }],
+    "target": "ESNext",
+    "lib": ["DOM","DOM.Iterable","ESNext"],
+    "allowJs": false,
+    "skipLibCheck": false,
+     // 通过为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性
+    "esModuleInterop": false,
+     // 用来指定允许从没有默认导出的模块中默认导入 
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    //模块解析策略
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    //将每一个文件作为单独模块
+    "isolatedModules": true,
+    //不生成编译文件
+    "noEmit": true,
+    "jsx": "react"
+  },
+  "include": ["./src"]
+}
