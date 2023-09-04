@@ -2,6 +2,7 @@ const path = require('path');
 const webpack=require('webpack')
 const htmlWebpackPlugin=require('html-webpack-plugin')
 const MiniCssPlugin= require('mini-css-extract-plugin')
+const isDev=process.env.NODE_ENV==='production'
 module.exports={
     entry:path.join(__dirname,'../src/index.tsx'),
     output:{
@@ -20,8 +21,7 @@ module.exports={
             {
                 test:/.(css|less)$/,
                 use:[
-                    // isDev?'style-loader':
-                    MiniCssPlugin.loader,
+                    isDev?'style-loader':MiniCssPlugin.loader,
                     'css-loader',
                     {
                         loader:'postcss-loader',

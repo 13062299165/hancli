@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './app.module.less'
-import Image from './assets/Snipaste_2022-04-17_22-49-00.jpg'
 const App = () => {
+    console.log(styles)
     // issue:获得的类名为乱码
     let [inputValue, setInputValue] = useState<string>("")
     return <div className={styles.container}>
