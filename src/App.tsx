@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import styles from "./app.module.less";
 
 const App = () => {
-	const [inputValue, setInputValue] = useState<string>("")
-	const a=10;
+	const [inputValue, setInputValue] = useState<string>(""); 
 	return <div className={styles.container}>
 		<h2>hhh</h2>
         Hey,World
@@ -12,4 +11,5 @@ const App = () => {
 		<p>{inputValue}</p>
 	</div>;
 };
+
 export default App;

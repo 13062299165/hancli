@@ -50,10 +50,10 @@ module.exports = {
             "always"
         ],
         "react/self-closing-comp": ["error"],
-        "no-console":["waring"],
+        "no-console":["warn"],
         "no-empty":["error"],
         "no-eval":["error"],
-        "no-unused-vars":["waring"],
+        "no-unused-vars":["warn"],
         "import/order":[
             "error",
             {
