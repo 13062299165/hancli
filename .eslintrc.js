@@ -49,6 +49,7 @@ module.exports = {
             "error",
             "always"
         ],
+        'import/no-unresolved': 'off',
         "react/self-closing-comp": ["error"],
         "no-console":["warn"],
         "no-empty":["error"],
