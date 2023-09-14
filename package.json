@@ -8,7 +8,18 @@
     "start:prod": "cross-env NODE_ENV=development BASE_ENV=production webpack-dev-server -c build/webpack.dev.config.js",
     "build": "cross-env NODE_ENV=production BASE_ENV=development webpack -c build/webpack.dev.config.js",
     "build:prod": "cross-env NODE_ENV=production BASE_ENV=production webpack -c build/webpack.dev.config.js",
-    "eslint": "eslint src/**/*.{ts,tsx}"
+    "eslint": "eslint src/**/*.{ts,tsx}",
+    "stylelint": "stylelint src/**/*.{less,css}",
+    "postinstall": "husky install",
+    "pre-check": "tsc && npx lint-staged"
+  },
+  "lint-staged": {
+    "src/**/*.{css,less}": [
+      "npm run stylelint"
+    ],
+    "src/**/*.{ts,tsx,js}": [
+      "npm run eslint"
+    ]
   },
   "keywords": [
     "webpack",
@@ -22,6 +33,8 @@
     "@babel/preset-env": "^7.22.14",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.11",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
@@ -41,6 +54,7 @@
     "glob-all": "^3.3.1",
     "html-webpack-plugin": "^5.5.3",
     "less-loader": "^11.1.3",
+    "lint-staged": "^13.1.2",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.3",
     "purgecss-webpack-plugin": "^4.1.3",
