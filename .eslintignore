@@ -1,0 +1,9 @@
+/.vscode
+/build
+/config
+.eslintrc.js
+.huskyrc
+.lintstagedrc
+.prettierrc
+.stylelintrc.js
+commitlint.config.js
