@@ -17,7 +17,7 @@
     "esModuleInterop": false,
      // 用来指定允许从没有默认导出的模块中默认导入 
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     //模块解析策略
