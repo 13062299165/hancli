@@ -77,8 +77,11 @@
     "ahooks": "^3.7.8",
     "antd": "^5.9.1",
     "axios": "^1.5.0",
+    "mobx": "^6.10.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "thread-loader": "^4.0.2"
+    "redux": "^4.2.1",
+    "thread-loader": "^4.0.2",
+    "zustand": "^4.4.1"
   }
 }

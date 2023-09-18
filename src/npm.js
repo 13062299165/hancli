@@ -2,8 +2,8 @@ const which = require('which')
 const print = require('../utils/print')
 const {success,warn,fail,notice} = print
 
-function findNpm() {
-    let npms = process.platform === 'win32' ? ['npm.cmd'] : ['npm']
+function findNpm(pack) {
+    let npms = [pack]
     for (let i = 0; i < npms.length; i++) {
       try {
         which.sync(npms[i])
@@ -12,7 +12,7 @@ function findNpm() {
       } catch (e) {
       }
     }
-    throw new Error('please install npm')
+    throw new Error(`please install ${pack}`)
 }
 
 const runCmd=(cmd,args,cb)=>{
@@ -26,8 +26,8 @@ const runCmd=(cmd,args,cb)=>{
         }
     })
 }
-module.exports = function(installArg = ['install']){
-    const npm = findNpm();
+module.exports = function(pack = "npm",installArg = ['install']){
+    const npm = findNpm(pack);
     return function(done){
         runCmd(which.sync(npm),installArg,function(){
             done && done()

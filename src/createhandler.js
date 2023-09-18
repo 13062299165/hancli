@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require("path");
 const {success,warn,fail,notice} = print
 const npm = require("./npm")
+
+const storeList = ['zustand','mobx','redux',"none"];
 const questions = [
     {
         name : 'conf',
@@ -16,19 +18,32 @@ const questions = [
         when : res => Boolean(res.conf)
     },
     {
+        name:"description",
+        message : "项目描述",
+        when:res => Boolean(res.conf)
+    },
+    {
         name : "author",
         message : "请输入作者",
         when : res => Boolean(res.conf)
     },
+    {
+        name : "store",
+        type:"list",
+        message : "选择本次项目要用的管理状态工具",
+        choices : storeList,
+        filter:val => val.toLowerCase(),
+        when : res => Boolean(res.conf)
+    },
     // {
-    //     name : "",
-    //     type:"list",
-    //     message : "选择本次项目要用的管理状态工具",
-    //     choice:['mobx','zustand'],
-    //     filter:val => val.toLowerCase(),
+    //     name : "pack",
+    //     type : "list",
+    //     message : "选择包管理工具",
+    //     choices : ['npm','pnpm','yarn'],
     //     when : res => Boolean(res.conf)
-    // },
+    // }
 ]
+
 
 function copyFiles(answer){
      //写入package.json
@@ -39,8 +54,20 @@ function copyFiles(answer){
                 if(err) throw Error("文件读取失败\n"+err)
                 let json = JSON.parse(data.toString());
                for(let key in answer){
-                    if(key!=="conf"){
-                        json[key]=answer[key]
+                    switch(key){
+                        case "conf": break;
+                        case "name": 
+                            json["name"]=answer["name"];
+                            break;
+                        case "author":
+                            json["author"]=answer["author"];
+                            break;
+                        case "store":
+                            for(let store of storeList){
+                                if(store!=answer[store]) delete json.dependencies[store]
+                            }
+                            break;
+                    default : break;
                     }
                }
                const path = process.cwd()+'/package.json';
@@ -113,7 +140,8 @@ function copyFiles(answer){
      success("------开始构建--------")
      const templateSource = __dirname.slice(0,-3) + "template";
      revisePackageJson(answer,templateSource).then(()=>{
-         copyDir(templateSource,process.cwd(),npm());
+        //拷贝完成后使用对应的包管理工具进行安装
+         copyDir(templateSource,process.cwd(),npm(answer["pack"]));
      })
     
 }
